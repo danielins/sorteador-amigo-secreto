@@ -6,7 +6,7 @@ const colors = {
 }
 
 const baseTheme = {
-  background: colors[100],
+  background: colors.brand[100],
   fontFamily: 'Poppins'
 }
 
