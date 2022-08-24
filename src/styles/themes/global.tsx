@@ -5,8 +5,15 @@ const GlobalStyles  = () => {
   return (
     <Global styles={
       css`
-        body {
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        html {
           background: ${theme.background};
+          border: ${theme.bodyBorder};
           font-family: ${theme.fontFamily}, Verdana, Geneva, Tahoma, sans-serif;
         }
       `

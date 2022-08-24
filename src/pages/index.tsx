@@ -1,6 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import { useTheme } from '@emotion/react'
+import Header from '../components/Header'
 
 const Home: React.FC = () => {
   const theme = useTheme()
@@ -16,8 +17,7 @@ const Home: React.FC = () => {
       </Head>
 
       <main>
-        <h1>Hello World</h1>
-        <p>{theme.fontFamily}</p>
+        <Header />
       </main>
     </div>
   )
