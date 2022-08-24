@@ -1,5 +1,4 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit'
-import exp from 'constants'
 import friendlistReducer from './friendListSlice'
 
 export function makeStore(){
