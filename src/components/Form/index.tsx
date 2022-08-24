@@ -7,15 +7,25 @@ const Form = () => {
   const friendlist = useAppSelector(selectFriendlist)
 
   const [name, setName] = useState('')
+  const [error, setError] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
+
+  const alreadyHasName = name =>
+    friendlist.filter(fr => fr.name === name).length ? true : false
 
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    setError('')
 
-    dispatch(addFriend({ name }))
+    const newFriend = { name }
 
-    setName('')
-    inputRef.current?.focus()
+    if (alreadyHasName(name)) {
+      setError('Nomes iguais não são permitidos')
+    } else {
+      dispatch(addFriend(newFriend))
+      setName('')
+      inputRef.current?.focus()
+    }
   }
 
   return (
@@ -28,6 +38,7 @@ const Form = () => {
         placeholder="Insira os nomes dos participantes"
       />
       <button disabled={!name}>Adicionar</button>
+      {error && <p role="alert">{error}</p>}
     </form>
   )
 }

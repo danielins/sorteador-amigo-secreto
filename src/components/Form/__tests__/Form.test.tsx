@@ -32,3 +32,18 @@ test("add new friend if there's a typed name", () => {
   expect(input).toHaveFocus()
   expect(input).toHaveValue('')
 })
+
+test("can't add repeated names", () => {
+  render(<Provided />)
+  const input = screen.getByPlaceholderText('Insira os nomes dos participantes')
+  const button = screen.getByRole('button')
+
+  fireEvent.change(input, { target: { value: 'Superman' } })
+  fireEvent.click(button)
+
+  fireEvent.change(input, { target: { value: 'Superman' } })
+  fireEvent.click(button)
+
+  const errorMessage = screen.getByRole('alert')
+  expect(errorMessage.textContent).toBe('Nomes iguais não são permitidos')
+})
