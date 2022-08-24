@@ -4,13 +4,18 @@ import { ThemeProvider } from '@emotion/react'
 
 import baseTheme from '../styles/themes/base'
 import { GlobalStyles } from '../styles/themes/global'
+import { Provider } from 'react-redux'
+
+import store from '../store/store'
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
-    <ThemeProvider theme={baseTheme}>
-      <GlobalStyles />
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={baseTheme}>
+        <GlobalStyles />
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </Provider>
   )
 }
 
