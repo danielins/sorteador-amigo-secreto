@@ -21,6 +21,9 @@ const Form = () => {
 
     if (alreadyHasName(name)) {
       setError('Nomes iguais não são permitidos')
+      setTimeout(() => {
+        setError('')
+      }, 5000)
     } else {
       dispatch(addFriend(newFriend))
       setName('')
