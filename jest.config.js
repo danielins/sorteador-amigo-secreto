@@ -11,6 +11,7 @@ const customJestConfig = {
     '^@/pages/(.*)$': '<rootDir>/pages/$1',
   },
   testEnvironment: 'jest-environment-jsdom',
+  snapshotSerializers: ['@emotion/jest/serializer']
 }
 
 module.exports = createJestConfig(customJestConfig);

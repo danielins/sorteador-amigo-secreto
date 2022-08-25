@@ -2,13 +2,17 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import React from 'react'
 import { act } from 'react-dom/test-utils'
 import { Provider } from 'react-redux'
+import { ThemeProvider } from '@emotion/react'
 import Form from '..'
 
 import store from '../../../store/store'
+import baseTheme from '../../../styles/themes/base'
 
 const Provided = () => (
   <Provider store={store}>
-    <Form />
+    <ThemeProvider theme={baseTheme}>
+      <Form />
+    </ThemeProvider>
   </Provider>
 )
 
