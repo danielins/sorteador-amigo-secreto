@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { useTheme } from '@emotion/react'
 import Header from '../components/Header'
 import Form from '../components/Form'
+import MainContainer from '../components/Main'
 
 const Home: React.FC = () => {
   const theme = useTheme()
@@ -19,7 +20,9 @@ const Home: React.FC = () => {
 
       <main>
         <Header />
-        <Form />
+        <MainContainer>
+          <Form />
+        </MainContainer>
       </main>
     </div>
   )

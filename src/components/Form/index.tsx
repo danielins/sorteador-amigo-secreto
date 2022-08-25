@@ -2,6 +2,8 @@ import { useRef, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../hooks'
 import { addFriend, selectFriendlist } from '../../store/friendListSlice'
 
+import * as S from './style'
+
 const Form = () => {
   const dispatch = useAppDispatch()
   const friendlist = useAppSelector(selectFriendlist)
@@ -32,17 +34,17 @@ const Form = () => {
   }
 
   return (
-    <form onSubmit={submitHandler}>
-      <input
+    <S.StyledForm onSubmit={submitHandler}>
+      <S.StyledInputField
         ref={inputRef}
         value={name}
         onChange={event => setName(event.target.value)}
         type="text"
         placeholder="Insira os nomes dos participantes"
       />
-      <button disabled={!name}>Adicionar</button>
+      <S.StyledSubmitButton disabled={!name}>Adicionar</S.StyledSubmitButton>
       {error && <p role="alert">{error}</p>}
-    </form>
+    </S.StyledForm>
   )
 }
 

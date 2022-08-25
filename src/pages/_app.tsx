@@ -3,7 +3,7 @@ import { AppProps } from 'next/app'
 import { ThemeProvider } from '@emotion/react'
 
 import baseTheme from '../styles/themes/base'
-import { GlobalStyles } from '../styles/themes/global'
+import { GlobalStyles } from '../styles/global'
 import { Provider } from 'react-redux'
 
 import store from '../store/store'

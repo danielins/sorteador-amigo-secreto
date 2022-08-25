@@ -24,7 +24,16 @@ const colors = {
 const baseTheme = {
   background: colors.brand[100],
   bodyBorder: `2px solid ${colors.grays[1000]}`,
-  fontFamily: 'Poppins'
+  fontFamily: 'Poppins',
+  main: {
+    background: colors.support[100]
+  },
+  form: {
+    button: {
+      background: colors.support[200],
+      color: colors.grays[900]
+    }
+  }
 }
 
 export default baseTheme;
