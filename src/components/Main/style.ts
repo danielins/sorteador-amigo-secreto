@@ -7,5 +7,6 @@ export const StyledMain = styled.main`
   margin-top: -32px;
   padding: 85px 10px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 `

@@ -1,15 +1,16 @@
 import { useAppSelector } from '../../hooks'
 import { selectFriendlist } from '../../store/friendListSlice'
+import * as S from './styles'
 
 const FriendList = () => {
   const friendlist = useAppSelector(selectFriendlist)
 
   return (
-    <ul>
+    <S.StyledList>
       {friendlist.map(friend => {
-        return <li>{friend.name}</li>
+        return <S.StyledListItem>{friend.name}</S.StyledListItem>
       })}
-    </ul>
+    </S.StyledList>
   )
 }
 

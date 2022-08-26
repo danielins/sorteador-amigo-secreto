@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../hooks'
 import { addFriend, selectFriendlist } from '../../store/friendListSlice'
+import FriendList from '../FriendList'
 
 import * as S from './style'
 
@@ -34,17 +35,21 @@ const Form = () => {
   }
 
   return (
-    <S.StyledForm onSubmit={submitHandler}>
-      <S.StyledInputField
-        ref={inputRef}
-        value={name}
-        onChange={event => setName(event.target.value)}
-        type="text"
-        placeholder="Insira os nomes dos participantes"
-      />
-      <S.StyledSubmitButton disabled={!name}>Adicionar</S.StyledSubmitButton>
-      {error && <p role="alert">{error}</p>}
-    </S.StyledForm>
+    <S.StyledWrapper>
+      <S.StyledForm onSubmit={submitHandler}>
+        <S.StyledInputField
+          ref={inputRef}
+          value={name}
+          onChange={event => setName(event.target.value)}
+          type="text"
+          placeholder="Insira os nomes dos participantes"
+        />
+        <S.StyledSubmitButton disabled={!name}>Adicionar</S.StyledSubmitButton>
+        {error && <p role="alert">{error}</p>}
+      </S.StyledForm>
+      <FriendList />
+      <S.StyledStartButton>Iniciar a brincadeira!</S.StyledStartButton>
+    </S.StyledWrapper>
   )
 }
 

@@ -25,6 +25,12 @@ const baseTheme = {
   background: colors.brand[100],
   bodyBorder: `2px solid ${colors.grays[1000]}`,
   fontFamily: 'Poppins',
+  general: {
+    button: {
+      background: colors.brand[200],
+      color: colors.grays[100]
+    }
+  },
   main: {
     background: colors.support[100]
   },

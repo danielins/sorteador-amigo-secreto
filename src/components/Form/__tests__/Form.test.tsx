@@ -23,7 +23,7 @@ describe('<Form />', () => {
     const input = screen.getByPlaceholderText(
       'Insira os nomes dos participantes'
     )
-    const button = screen.getByRole('button')
+    const button = screen.getByText(/Adicionar/i)
 
     expect(input).toBeInTheDocument()
     expect(button).toBeDisabled()
@@ -34,7 +34,7 @@ describe('<Form />', () => {
     const input = screen.getByPlaceholderText(
       'Insira os nomes dos participantes'
     )
-    const button = screen.getByRole('button')
+    const button = screen.getByText(/Adicionar/i)
 
     fireEvent.change(input, { target: { value: 'Batman' } })
     fireEvent.click(button)
@@ -48,7 +48,7 @@ describe('<Form />', () => {
     const input = screen.getByPlaceholderText(
       'Insira os nomes dos participantes'
     )
-    const button = screen.getByRole('button')
+    const button = screen.getByText(/Adicionar/i)
 
     fireEvent.change(input, { target: { value: 'Superman' } })
     fireEvent.click(button)
@@ -67,7 +67,7 @@ describe('<Form />', () => {
     const input = screen.getByPlaceholderText(
       'Insira os nomes dos participantes'
     )
-    const button = screen.getByRole('button')
+    const button = screen.getByText(/Adicionar/i)
 
     fireEvent.change(input, { target: { value: 'Superman' } })
     fireEvent.click(button)
