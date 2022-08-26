@@ -4,6 +4,7 @@ import { useTheme } from '@emotion/react'
 import Header from '../components/Header'
 import Form from '../components/Form'
 import MainContainer from '../components/Main'
+import FriendList from '../components/FriendList'
 
 const Home: React.FC = () => {
   const theme = useTheme()
@@ -22,6 +23,7 @@ const Home: React.FC = () => {
         <Header />
         <MainContainer>
           <Form />
+          <FriendList />
         </MainContainer>
       </main>
     </div>
