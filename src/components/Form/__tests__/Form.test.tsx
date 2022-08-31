@@ -1,15 +1,30 @@
 import { fireEvent, render, screen } from '@testing-library/react'
+import { useRouter } from 'next/router'
 import React from 'react'
 import { act } from 'react-dom/test-utils'
 import { Provider } from 'react-redux'
 import { ThemeProvider } from '@emotion/react'
-import Form from '..'
+import configureStore from 'redux-mock-store'
 
+import Form from '..'
 import store from '../../../store/store'
 import baseTheme from '../../../styles/themes/base'
+import { friendlistMock } from '../../../../__mocks__/friendlistMock'
 
-const Provided = () => (
-  <Provider store={store}>
+const mockStore = configureStore()({ friendlist: friendlistMock })
+
+const mockNavigation = jest.fn()
+
+jest.mock('next/router', () => ({
+  useRouter() {
+    return {
+      push: mockNavigation
+    }
+  }
+}))
+
+const Provided = ({ useMock }: any) => (
+  <Provider store={useMock ? mockStore : store}>
     <ThemeProvider theme={baseTheme}>
       <Form />
     </ThemeProvider>
@@ -84,5 +99,26 @@ describe('<Form />', () => {
 
     errorMessage = screen.queryByRole('alert')
     expect(errorMessage).toBeNull()
+  })
+
+  test("can't draw names if there are less than 3 friends", () => {
+    render(<Provided />)
+
+    const button = screen.getByText(/Iniciar a brincadeira\!/i)
+    expect(button).toBeDisabled()
+  })
+
+  test('can draw names', () => {
+    render(<Provided useMock={true} />)
+
+    expect(screen.getByText(/Iniciar a brincadeira\!/i)).not.toBeDisabled()
+  })
+
+  test('start to draw names', () => {
+    render(<Provided useMock={true} />)
+
+    fireEvent.click(screen.getByText(/Iniciar a brincadeira\!/i))
+    expect(mockNavigation).toHaveBeenCalled()
+    expect(mockNavigation).toHaveBeenCalledWith('/draw')
   })
 })

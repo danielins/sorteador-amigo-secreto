@@ -7,8 +7,8 @@ const FriendList = () => {
 
   return (
     <S.StyledList>
-      {friendlist.map(friend => {
-        return <S.StyledListItem>{friend.name}</S.StyledListItem>
+      {friendlist.map((friend, index) => {
+        return <S.StyledListItem key={index}>{friend.name}</S.StyledListItem>
       })}
     </S.StyledList>
   )

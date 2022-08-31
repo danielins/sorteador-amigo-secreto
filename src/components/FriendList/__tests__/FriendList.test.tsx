@@ -6,19 +6,9 @@ import configureStore from 'redux-mock-store'
 import FriendList from '..'
 import store from '../../../store/store'
 import baseTheme from '../../../styles/themes/base'
+import { friendlistMock } from '../../../../__mocks__/friendlistMock'
 
-const testList = [
-  {
-    name: 'Batman'
-  },
-  {
-    name: 'Superman'
-  },
-  {
-    name: 'Wonder Woman'
-  }
-]
-const mockStore = configureStore()({ friendlist: testList })
+const mockStore = configureStore()({ friendlist: friendlistMock })
 
 const Provided = ({ useMock }: any) => (
   <Provider store={useMock ? mockStore : store}>
@@ -42,6 +32,6 @@ describe('<FriendList />', () => {
     render(<Provided useMock={true} />)
 
     const items = screen.queryAllByRole('listitem')
-    expect(items).toHaveLength(testList.length)
+    expect(items).toHaveLength(friendlistMock.length)
   })
 })

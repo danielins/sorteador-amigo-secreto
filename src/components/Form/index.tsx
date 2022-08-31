@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useAppDispatch, useAppSelector } from '../../hooks'
 import { addFriend, selectFriendlist } from '../../store/friendListSlice'
 import FriendList from '../FriendList'
@@ -12,6 +13,7 @@ const Form = () => {
   const [name, setName] = useState('')
   const [error, setError] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
+  const router = useRouter()
 
   const alreadyHasName = name =>
     friendlist.filter(fr => fr.name === name).length ? true : false
@@ -48,7 +50,12 @@ const Form = () => {
         {error && <p role="alert">{error}</p>}
       </S.StyledForm>
       <FriendList />
-      <S.StyledStartButton>Iniciar a brincadeira!</S.StyledStartButton>
+      <S.StyledStartButton
+        disabled={friendlist.length < 3 ? true : false}
+        onClick={() => router.push('/draw')}
+      >
+        Iniciar a brincadeira!
+      </S.StyledStartButton>
     </S.StyledWrapper>
   )
 }
