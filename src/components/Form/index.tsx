@@ -1,8 +1,11 @@
 import { useRef, useState } from 'react'
 import { useRouter } from 'next/router'
+import uuid from 'react-uuid'
+
 import { useAppDispatch, useAppSelector } from '../../hooks'
 import { addFriend, selectFriendlist } from '../../store/friendListSlice'
 import FriendList from '../FriendList'
+import { useDrawer } from '../../hooks/useDrawer'
 
 import * as S from './style'
 
@@ -14,6 +17,7 @@ const Form = () => {
   const [error, setError] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
   const router = useRouter()
+  const drawPairs = useDrawer()
 
   const alreadyHasName = name =>
     friendlist.filter(fr => fr.name === name).length ? true : false
@@ -22,7 +26,7 @@ const Form = () => {
     event.preventDefault()
     setError('')
 
-    const newFriend = { name }
+    const newFriend = { id: uuid(), name }
 
     if (alreadyHasName(name)) {
       setError('Nomes iguais não são permitidos')
@@ -34,6 +38,11 @@ const Form = () => {
       setName('')
       inputRef.current?.focus()
     }
+  }
+
+  const handleClick = () => {
+    drawPairs()
+    router.push('/draw')
   }
 
   return (
@@ -52,7 +61,7 @@ const Form = () => {
       <FriendList />
       <S.StyledStartButton
         disabled={friendlist.length < 3 ? true : false}
-        onClick={() => router.push('/draw')}
+        onClick={() => handleClick()}
       >
         Iniciar a brincadeira!
       </S.StyledStartButton>

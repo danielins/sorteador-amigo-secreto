@@ -18,6 +18,7 @@
     "moduleResolution": "Node",
     "jsx": "preserve",
     "resolveJsonModule": true,
+    "downlevelIteration": true,
     "types": [
       "node",
       "jest",

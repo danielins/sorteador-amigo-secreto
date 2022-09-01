@@ -1,9 +1,14 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit'
 import friendlistReducer from './friendListSlice'
+import { enableMapSet } from 'immer'
+
+enableMapSet();
 
 export function makeStore(){
   return configureStore({
-    reducer: { friendlist: friendlistReducer },
+    reducer: { 
+      friendlist: friendlistReducer,
+    }
   })
 }
 

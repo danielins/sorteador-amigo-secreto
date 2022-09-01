@@ -1,5 +1,4 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import { useRouter } from 'next/router'
 import React from 'react'
 import { act } from 'react-dom/test-utils'
 import { Provider } from 'react-redux'
@@ -13,6 +12,7 @@ import { friendlistMock } from '../../../../__mocks__/friendlistMock'
 
 const mockStore = configureStore()({ friendlist: friendlistMock })
 
+const mockDraw = jest.fn()
 const mockNavigation = jest.fn()
 
 jest.mock('next/router', () => ({
@@ -21,6 +21,10 @@ jest.mock('next/router', () => ({
       push: mockNavigation
     }
   }
+}))
+
+jest.mock('../../../hooks/useDrawer', () => ({
+  useDrawer: () => mockDraw
 }))
 
 const Provided = ({ useMock }: any) => (
@@ -118,6 +122,7 @@ describe('<Form />', () => {
     render(<Provided useMock={true} />)
 
     fireEvent.click(screen.getByText(/Iniciar a brincadeira\!/i))
+    expect(mockDraw).toHaveBeenCalled()
     expect(mockNavigation).toHaveBeenCalled()
     expect(mockNavigation).toHaveBeenCalledWith('/draw')
   })
