@@ -1,18 +1,22 @@
 export const friendlistMock = [
   {
     id: 'bat',
-    name: 'Batman'
+    name: 'Batman',
+    pair: 'sup',
   },
   {
     id: 'sup',
-    name: 'Superman'
+    name: 'Superman',
+    pair: 'bat'
   },
   {
     id: 'ww',
-    name: 'Wonder Woman'
+    name: 'Wonder Woman',
+    pair: 'f'
   },
   {
     id: 'f',
-    name: 'The Flash'
+    name: 'The Flash',
+    pair: 'ww'
   }
 ]

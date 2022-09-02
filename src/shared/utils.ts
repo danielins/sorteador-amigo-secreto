@@ -1,7 +1,6 @@
 import { useAppSelector } from "../hooks"
-import { selectFriendlist } from "../store/friendListSlice"
+import { Friend, selectFriendlist } from "../store/friendListSlice"
 
-export const getFriendById = (id) => {
-  const friendlist = useAppSelector(selectFriendlist)
-  return friendlist.map(friend => friend.id).indexOf(id)
+export const getFriendById = (friendlist: Friend[], id: string):Friend => {
+  return friendlist.filter(friend => friend.id === id)[0]
 }
